@@ -7,7 +7,7 @@ import store from './store';
 import TodoList from './containers/TodoList';
 
 import './App.scss';
-import Homepage from './pages/Homepage';
+import Homepage from './pages/HomePage';
 
 class App extends Component {
   render() {
