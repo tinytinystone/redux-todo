@@ -10,10 +10,13 @@ export default class TodoListView extends Component {
       <ul>
         {todos.map(t => (
           <li key={t.id}>
-            <input type="checkbox" value={t.complete} />
-            <p>
-              카테고리<span>{t.category}</span>
-            </p>
+            <input
+              type="checkbox"
+              checked={t.complete}
+              onChange={() => {
+                this.props.handleComplete(t.id, t.complete);
+              }}
+            />
             <p>{t.title}</p>
             <button onClick={() => this.props.handleDelete(t.id)}>삭제</button>
           </li>

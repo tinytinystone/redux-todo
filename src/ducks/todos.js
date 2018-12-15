@@ -1,7 +1,5 @@
-const GET = 'my-app/todos/get';
 const ADD = 'my-app/todos/add';
 const DELETE = 'my-app/todos/delete';
-const COMPLETE = 'my-app/todos/complete';
 const UPDATE_ALL = 'my-app/todos/update-all';
 
 export default function todos(state = initialTodoState, action) {
@@ -14,7 +12,6 @@ export default function todos(state = initialTodoState, action) {
             id: count++,
             title: action.title,
             complete: false,
-            category: action.category,
           },
         ],
       };
@@ -32,7 +29,6 @@ export default function todos(state = initialTodoState, action) {
           id: t.id,
           title: t.body,
           complete: t.complete,
-          category: t.categoryId,
         })),
       };
     default:
@@ -46,11 +42,10 @@ const initialTodoState = {
   todos: [],
 };
 
-export function addTodo(title, category) {
+export function addTodo(title) {
   return {
     type: ADD,
     title,
-    category,
   };
 }
 

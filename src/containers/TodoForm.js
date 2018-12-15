@@ -6,13 +6,12 @@ import { addTodo } from '../ducks/todos';
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleSubmit: async (title, category) => {
-      const res = await api.post('/todos', {
+    handleSubmit: async title => {
+      await api.post('/todos', {
         body: title,
-        categoryId: parseInt(category),
         complete: false,
       });
-      dispatch(addTodo(title, category));
+      dispatch(addTodo(title));
     },
   };
 }
