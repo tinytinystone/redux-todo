@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import TodoListView from '../components/TodoListView';
 import api from '../api';
-import { updateAllTodos, deleteTodo, completeTodo } from '../ducks/todos';
+import { updateAllTodos, deleteTodo } from '../ducks/todos';
 
 function mapStateToProps(state) {
   return {
@@ -20,7 +20,6 @@ function mapDispatchToProps(dispatch) {
     },
     handleDelete: async id => {
       await api.delete('/todos/' + id);
-      // 캐시에서 해당 할 일 항목을 삭제 (낙관적 업데이트)
       dispatch(deleteTodo(id));
     },
     refreshAllTodos: async () => {

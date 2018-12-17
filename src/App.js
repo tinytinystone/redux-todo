@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import store from './store';
 
-import TodoList from './containers/TodoList';
-
 import './App.scss';
 import Homepage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
 
 class App extends Component {
   render() {
@@ -15,7 +14,8 @@ class App extends Component {
       <BrowserRouter>
         <Provider store={store}>
           <Switch>
-            <Route path="/" component={Homepage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/todos" component={Homepage} />
           </Switch>
         </Provider>
       </BrowserRouter>

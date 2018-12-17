@@ -2,23 +2,21 @@ import { connect } from 'react-redux';
 
 import LoginFormView from '../components/LoginFormView';
 import api from '../api';
+import withLoading from '../hoc/withLoading';
 
-import { login } from '../ducks/users';
+import { login, loading } from '../ducks/users';
 
-// async function mapStateToProps(state) {
-//   if (localStorage.getItem('token')) {
-//     const res = await api.get('/me');
-//     return {
-//       id: res.data.id,
-//       username: res.data.username,
-//     };
-//   }
-//   return null;
-// }
+function mapStateToProps(state) {
+  return {
+    username: state.users.username,
+    loading: state.users.isLoading,
+  };
+}
 
 function mapDispatchToprops(dispatch) {
   return {
     handleSubmit: async (username, password) => {
+      dispatch(loading());
       const res = await api.post('/users/login', {
         username,
         password,
@@ -30,6 +28,6 @@ function mapDispatchToprops(dispatch) {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToprops
-)(LoginFormView);
+)(withLoading(LoginFormView));

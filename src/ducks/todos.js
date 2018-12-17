@@ -16,12 +16,8 @@ export default function todos(state = initialTodoState, action) {
         ],
       };
     case DELETE:
-      const deletedTodoIndex = state.todos.findIndex(t => {
-        return action.id === t.id;
-      });
-      state.todos.splice(deletedTodoIndex, 1);
       return {
-        todos: [...state.todos],
+        todos: [...state.todos.filter(t => action.id !== t.id)],
       };
     case UPDATE_ALL:
       return {

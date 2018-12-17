@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 export default class LoginFormView extends Component {
   render() {
+    if (this.props.username) {
+      alert(`${this.props.username}님, 환영합니다!`);
+      return <Redirect to="/todos" />;
+    }
     return (
       <form
         onSubmit={e => {
